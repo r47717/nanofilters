@@ -1,4 +1,4 @@
-import {nums, objects, strings} from './index.js';
+import { nums, objects, strings, head, tail } from "./index.js";
 
 const arr = [
   1,
@@ -26,7 +26,7 @@ const arr = [
 
 console.log(nums(arr));
 console.log(objects(arr));
-console.log(strings(arr));
+console.log(head(strings(arr)));
 console.log(nums.not(arr));
 console.log(objects.not(arr));
-console.log(strings.not(arr));
+console.log(tail(strings.not(arr)), 2);
