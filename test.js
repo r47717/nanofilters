@@ -1,12 +1,9 @@
 import {
   truthy,
-  first,
-  last,
   head,
   tail,
   objects,
   vals,
-  plain,
   instances,
   bools,
   nums,
@@ -105,66 +102,6 @@ describe("truthy tests", () => {
       expect(val).not.toBe(false);
       expect(val).not.toBe("");
     }
-  });
-});
-
-// first
-
-describe("first tests", () => {
-  test("empty array", () => {
-    expect(first([])).toStrictEqual(undefined);
-  });
-
-  test("undefined arg", () => {
-    expect(first(undefined)).toEqual(undefined);
-  });
-
-  test("null arg", () => {
-    expect(first(null)).toEqual(undefined);
-  });
-
-  test("non array arg", () => {
-    expect(first({})).toEqual(undefined);
-  });
-
-  test("sunny cases", () => {
-    const obj = { param: {} };
-    expect(first([1234, {}, "", null])).toBe(1234);
-    expect(first([{}, "", null, 1234])).toStrictEqual({});
-    expect(first(["", null, {}, 1234])).toBe("");
-    expect(first([null, "", {}, 1234])).toBe(null);
-    expect(first([undefined, "", null, {}, 1234])).toBe(undefined);
-    expect(first([obj, 1234])).toBe(obj);
-  });
-});
-
-// last
-
-describe("last tests", () => {
-  test("empty array", () => {
-    expect(last([])).toStrictEqual(undefined);
-  });
-
-  test("undefined arg", () => {
-    expect(last(undefined)).toEqual(undefined);
-  });
-
-  test("null arg", () => {
-    expect(last(null)).toEqual(undefined);
-  });
-
-  test("non array arg", () => {
-    expect(last({})).toEqual(undefined);
-  });
-
-  test("sunny cases", () => {
-    const obj = { param: {} };
-    expect(last([1234, {}, "", null])).toBe(null);
-    expect(last(["", null, 1234, {}])).toStrictEqual({});
-    expect(last([null, {}, 1234, ""])).toBe("");
-    expect(last(["", {}, 1234, null])).toBe(null);
-    expect(last(["", null, {}, 1234, undefined])).toBe(undefined);
-    expect(last([12345, "", null, obj])).toBe(obj);
   });
 });
 
@@ -336,23 +273,23 @@ describe("vals tests", () => {
   });
 });
 
-// plain
+// objects.plain
 
-describe("plain tests", () => {
+describe("objects.plain tests", () => {
   test("empty array", () => {
-    expect(plain([])).toStrictEqual([]);
+    expect(objects.plain([])).toStrictEqual([]);
   });
 
   test("undefined arg", () => {
-    expect(plain(undefined)).toEqual(undefined);
+    expect(objects.plain(undefined)).toEqual(undefined);
   });
 
   test("null arg", () => {
-    expect(plain(null)).toEqual(undefined);
+    expect(objects.plain(null)).toEqual(undefined);
   });
 
   test("non array arg", () => {
-    expect(plain({})).toEqual(undefined);
+    expect(objects.plain({})).toEqual(undefined);
   });
 
   test("sunny cases", () => {
@@ -374,7 +311,7 @@ describe("plain tests", () => {
       o5,
     ];
 
-    expect(plain(arr)).toStrictEqual([o1, o2, o3, o0, o4, o5]);
+    expect(objects.plain(arr)).toStrictEqual([o1, o2, o3, o0, o4, o5]);
   });
 });
 
