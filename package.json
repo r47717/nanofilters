@@ -1,6 +1,6 @@
 {
   "name": "nanofilters",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "simple array filters for es6",
   "main": "index.js",
   "type": "module",
