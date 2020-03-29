@@ -1,4 +1,4 @@
-import { nums, objects, strings, head, tail } from "./index.js";
+const { nums, objects, strings, head, tail } = require("./index.js");
 
 const arr = [
   1,

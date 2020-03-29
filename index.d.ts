@@ -1,3 +1,5 @@
+declare module "nanofilters";
+
 /**
  * Excludes false, 0, null, undefined, ''
  * @param arr
