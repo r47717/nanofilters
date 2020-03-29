@@ -1,8 +1,8 @@
-# nanofilters
+# Nano Filters
 
 Simple array filters for ES6
 
-```javascript
+```js
 const arr = [1, "2", { arg: 3 }, [4], null, undefined];
 
 truthy(arr); // excludes false, 0, null, undefined, ''
