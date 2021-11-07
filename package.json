@@ -1,10 +1,10 @@
 {
   "name": "nanofilters",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "simple array filters for es6",
-  "main": "lib/cjs/index.js",
+  "main": "lib/cjs/index.min.js",
   "typings": "lib/cjs/index.d.ts",
-  "module": "lib/esm/index.mjs",
+  "module": "lib/esm/index.min.mjs",
   "scripts": {
     "clean": "rimraf ./lib",
     "minify-cjs": "uglifyjs --compress --mangle --output ./lib/cjs/index.min.js -- ./lib/cjs/index.js",
