@@ -1,4 +1,4 @@
-import {
+const {
   truthy,
   head,
   tail,
@@ -8,7 +8,7 @@ import {
   bools,
   nums,
   strings,
-} from "./index";
+} = require(".");
 
 const o0 = Object.create(null);
 const o1 = {};

@@ -1,14 +1,24 @@
+type FilterFunction = {
+  (arr: Array<any>, param?: any): Array<any> | undefined;
+  not?: (arr: Array<any>, param?: any) => Array<any> | undefined;
+  plain?: {
+    (arr: Array<any>, param?: any): Array<any> | undefined;
+    not?: (arr: Array<any>, param?: any) => Array<any> | undefined;
+  };
+  int?: (arr: Array<any>, param?: any) => Array<any> | undefined;
+};
+
 // exclude all falsy values
 
-module.exports.truthy = (arr) =>
+export const truthy: FilterFunction = (arr: Array<any>) =>
   Array.isArray(arr) ? arr.filter(Boolean) : undefined;
 
-module.exports.truthy.not = (arr) =>
+truthy.not = (arr: Array<any>) =>
   Array.isArray(arr) ? arr.filter((item) => !Boolean(item)) : undefined;
 
 // get first n elems
 
-module.exports.head = (arr, n) =>
+export const head: FilterFunction = (arr: Array<any>, n: number) =>
   Array.isArray(arr) &&
   arr.length &&
   ((Number.isInteger(n) && n > 0) || n === undefined)
@@ -17,7 +27,7 @@ module.exports.head = (arr, n) =>
 
 // get last n elems
 
-module.exports.tail = (arr, n) =>
+export const tail: FilterFunction = (arr: Array<any>, n: number) =>
   Array.isArray(arr) &&
   arr.length &&
   ((Number.isInteger(n) && n > 0) || n === undefined)
@@ -26,7 +36,7 @@ module.exports.tail = (arr, n) =>
 
 // get objects only
 
-module.exports.objects = (arr) =>
+export const objects: FilterFunction = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter(
         (item) =>
@@ -34,7 +44,7 @@ module.exports.objects = (arr) =>
       )
     : undefined;
 
-module.exports.objects.not = (arr) =>
+objects.not = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter(
         (item) =>
@@ -44,7 +54,7 @@ module.exports.objects.not = (arr) =>
 
 // get plain objects only (prototype is Object or null)
 
-module.exports.objects.plain = (arr) =>
+objects.plain = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter(
         (item) =>
@@ -54,7 +64,7 @@ module.exports.objects.plain = (arr) =>
       )
     : undefined;
 
-module.exports.objects.plain.not = (arr) =>
+objects.plain.not = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter(
         (item) =>
@@ -67,38 +77,38 @@ module.exports.objects.plain.not = (arr) =>
 
 // remove null and undefined
 
-module.exports.vals = (arr) =>
+export const vals: FilterFunction = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter((item) => item !== null && item !== undefined)
     : undefined;
 
-module.exports.vals.not = (arr) =>
+vals.not = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter((item) => item === null || item === undefined)
     : undefined;
 
 // leave instances of the constructor
 
-module.exports.instances = (arr, c) =>
+export const instances: FilterFunction = (arr: Array<any>, c: any) =>
   Array.isArray(arr) && typeof c === "function"
     ? arr.filter((item) => item instanceof c)
     : undefined;
 
-module.exports.instances.not = (arr, c) =>
+instances.not = (arr: Array<any>, c: any) =>
   Array.isArray(arr) && typeof c === "function"
     ? arr.filter((item) => !(item instanceof c))
     : undefined;
 
 // leave booleans only
 
-module.exports.bools = (arr) =>
+export const bools: FilterFunction = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter(
         (item) => item === true || item === false || item instanceof Boolean
       )
     : undefined;
 
-module.exports.bools.not = (arr) =>
+bools.not = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter(
         (item) => item !== true && item !== false && !(item instanceof Boolean)
@@ -107,29 +117,29 @@ module.exports.bools.not = (arr) =>
 
 // leave numbers only (exclude NaN, Infinity)
 
-module.exports.nums = (arr) =>
+export const nums: FilterFunction = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter((item) => typeof item === "number" && Number.isFinite(item))
     : undefined;
 
-module.exports.nums.not = (arr) =>
+nums.not = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter((item) => typeof item !== "number" || !Number.isFinite(item))
     : undefined;
 
-module.exports.nums.int = (arr) =>
+nums.int = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter((item) => typeof item === "number" && Number.isInteger(item))
     : undefined;
 
 // leave strings only
 
-module.exports.strings = (arr) =>
+export const strings: FilterFunction = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter((item) => typeof item === "string")
     : undefined;
 
-module.exports.strings.not = (arr) =>
+strings.not = (arr: Array<any>) =>
   Array.isArray(arr)
     ? arr.filter((item) => typeof item !== "string")
     : undefined;

@@ -1,12 +1,16 @@
 {
   "name": "nanofilters",
-  "version": "1.3.2",
+  "version": "2.0.0",
   "description": "simple array filters for es6",
-  "main": "index.js",
-  "typings": "index.d.ts",
+  "main": "lib/cjs/index.js",
+  "typings": "lib/cjs/index.d.ts",
+  "module": "lib/esm/index.mjs",
   "scripts": {
-    "test": "jest",
-    "demo": "node demo.js"
+    "clean": "rimraf ./lib",
+    "build-cjs": "tsc",
+    "build-esm": "tsc --project tsconfig-esm.json && shx mv ./lib/esm/index.js ./lib/esm/index.mjs",
+    "build": "yarn clean && yarn build-cjs && yarn build-esm",
+    "test": "jest"
   },
   "keywords": [
     "filters",
@@ -17,13 +21,12 @@
   "license": "MIT",
   "repository": "r47717/nanofilters",
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "babel-jest": "^25.2.3",
     "husky": "^4.2.3",
     "jest": "^25.2.3",
     "lint-staged": "^10.0.9",
-    "prettier": "^2.0.2"
+    "prettier": "^2.0.2",
+    "typescript": "^4.4.4",
+    "shx": "^0.3.3"
   },
   "husky": {
     "hooks": {
@@ -34,18 +37,6 @@
     "*.js": [
       "prettier --write",
       "jest --findRelatedTests"
-    ]
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
     ]
   }
 }

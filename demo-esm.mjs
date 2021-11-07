@@ -1,4 +1,4 @@
-const { nums, objects, strings, head, tail } = require("./index.js");
+import { nums, objects, strings, head, tail } from "./lib/esm/index.mjs";
 
 const arr = [
   1,
