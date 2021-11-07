@@ -1,6 +1,6 @@
 # Nano Filters
 
-Simple array filters for ES6
+Tiny (<3Kb) array filters lib with both ESM and CJS support:
 
 ```js
 const arr = [1, "2", { arg: 3 }, [4], null, undefined];
